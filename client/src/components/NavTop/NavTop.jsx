@@ -5,8 +5,8 @@ import style from './navTop.css';
 
 const NavTop = () => {
   return (
-    <Navbar bg='light' expand='sm'>
-      <Navbar.Brand href='#'><img src={Sprout} className={style.sprout} /></Navbar.Brand>
+    <Navbar bg='transparent' expand='sm'>
+      <Navbar.Brand href='#'><img src={ Sprout } className={ style.sprout } /></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className='ml-auto'>
@@ -16,7 +16,7 @@ const NavTop = () => {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  )
+  );
 }
 
 export default NavTop;
