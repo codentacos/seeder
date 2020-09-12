@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/codentacos/seeder-mvp#readme",
   "dependencies": {
+    "bootstrap": "^4.5.2",
     "express": "^4.17.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
@@ -31,6 +33,9 @@
     "babel-loader": "^8.1.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "css-loader": "^4.3.0",
+    "file-loader": "^6.1.0",
+    "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }

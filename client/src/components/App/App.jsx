@@ -1,8 +1,12 @@
 import React from 'react';
+import NavTop from '../NavTop/NavTop.jsx';
 
 const App = () => {
   return (
-    <h1>Test</h1>
+    <div>
+      <NavTop />
+
+    </div>
   )
 }
 
