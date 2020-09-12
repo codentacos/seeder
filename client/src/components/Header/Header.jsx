@@ -9,10 +9,10 @@ const Header = () => (
   <Jumbotron>
     <Container>
       <Row>
-        <Col className="d-flex align-items-center">
+        <Col xs={12} lg={6} className="d-flex align-items-center m-auto text-sm-center text-lg-left">
           <h1>Support your favorite developers & applications</h1>
         </Col>
-        <Col xs={6}>
+        <Col xs={12} md={10} lg={6} className="m-auto">
           <img src={devHeader} className={style.devHeader} alt="Cartoon programmer writing code" />
         </Col>
       </Row>

@@ -5,11 +5,11 @@ import style from './appCard.css';
 const AppCard = () => (
   <Container className={style.appCard}>
     <Row>
-      <Col>
+      <Col xs={12}>
         <h2>Droppr App</h2>
       </Col>
-      <Col className="d-flex align-items-center justify-content-end">
-        <span>Developed by: Jeff Stanz</span>
+      <Col className="mb-2">
+        <span><u>Developed by: Jeff Stanz</u></span>
       </Col>
     </Row>
     <Row>

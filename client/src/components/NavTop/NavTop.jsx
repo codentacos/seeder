@@ -1,11 +1,13 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
 import Sprout from '../../assets/images/sprout.png';
 import style from './navTop.css';
 
 const NavTop = () => (
   <Navbar bg="transparent" expand="sm">
-    <Navbar.Brand href="#"><img src={Sprout} className={style.sprout} alt="Plant sprouting logo" /></Navbar.Brand>
+    <Navbar.Brand href="#">
+      <img src={Sprout} className={`${style.sprout} mr-2`} alt="Plant sprouting logo" />
+    </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
