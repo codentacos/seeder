@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 mongoose.connect(`mongodb+srv://${process.env.DBUSER}:${process.env.DBPASS}@seed-mvp.ucefo.mongodb.net/seed-mvp?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set('useFindAndModify', false);
 const db = mongoose.connection;
-
 const UserAppSchema = new mongoose.Schema({
   appName: String,
   dev: String,

@@ -12,12 +12,6 @@
   width: 20px;
 }
 
-.heartFull {
-  background-image: url('../../assets/images/heartFull.svg');
-  height: 20px;
-  width: 20px;
-}
-
 .heart:hover {
   background-image: url('../../assets/images/heartFull.svg');
   height: 20px;
