@@ -5,7 +5,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
 import style from './appCard.css';
 
 const AppCard = (props) => {
@@ -32,7 +31,7 @@ const AppCard = (props) => {
       </Row>
       <Row>
         <Col>
-          <div className={voted === false ? `${style.heart} d-inline-block` : `${style.heartFull} d-inline-block`} onClick={voted === false ? () => { handleHearts(_id); setVoted(true)} : null}><span className="ml-4">{likes}</span></div>
+          <div className={voted === false ? `${style.heart} d-inline-block` : `${style.heartFull} d-inline-block`} onClick={voted === false ? () => { handleHearts(_id); setVoted(true); } : null}><span className="ml-4">{likes}</span></div>
         </Col>
       </Row>
     </Container>
