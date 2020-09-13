@@ -19,38 +19,13 @@ const App = () => {
         // eslint-disable-next-line no-console
         console.log(error);
       });
-  }, []);
-
-  useEffect(() => {
-    axios('/home')
-      .then((response) => {
-        setUserApps(response.data);
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      });
-  }, []);
-
-  const handleHearts = (id) => {
-    axios.put('/like', { id })
-      .then(() => {
-        axios('/home')
-          .then((response) => {
-            setUserApps(response.data);
-          })
-          .catch((error) => {
-            // eslint-disable-next-line no-console
-            console.log(error);
-          });
-      })
-  };
+  }, [userApps]);
 
   const handleAppCards = () => {
     if (userApps.length > 0) {
       return (
         <div>
-          {userApps.map((el) => <AppCard appData={el} key={el._id} handleHearts={handleHearts} />)}
+          {userApps.map((el) => <AppCard appData={el} key={el._id} />)}
         </div>
       );
     }
