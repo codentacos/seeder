@@ -19,7 +19,7 @@ const App = () => {
         // eslint-disable-next-line no-console
         console.log(error);
       });
-  }, []);
+  }, [userApps]);
 
   const handleAppCards = () => {
     if (userApps.length > 0) {
