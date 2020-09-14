@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -16,6 +17,11 @@ app.get('/home', (req, res) => {
     .then((response) => {
       res.send(response);
     });
+});
+
+// catch all redirect for refreshing on other routes
+app.get('/*', (req, res) => {
+  res.redirect('/');
 });
 
 // /like updates record in database for liking applications

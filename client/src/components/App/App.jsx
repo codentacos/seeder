@@ -4,6 +4,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Button, Modal, Form, FormGroup, FormLabel, FormText, FormControl } from 'react-bootstrap';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { Navbar, Nav } from 'react-bootstrap';
+// import { BrowserRouter as Router, Link } from 'react-router-dom';
+import Sprout from '../../assets/images/sprout.png';
 import NavTop from '../NavTop/NavTop.jsx';
 import Header from '../Header/Header.jsx';
 import AppCard from '../AppCard/AppCard.jsx';
@@ -73,12 +77,37 @@ const App = () => {
   };
 
   return (
-    <div>
-      <NavTop />
-      <Header />
-      <Container>
-        <h2 className="text-center">Want to submit your application?</h2>
-        <Button className={`${style.button} d-block ml-auto mr-auto mb-3`} onClick={handleShow}>Post an App</Button>
+    <Router>
+      <div>
+        <Navbar bg="transparent" expand="sm">
+          <Navbar.Brand href="#">
+            <img src={Sprout} className={`${style.sprout} mr-2`} alt="Plant sprouting logo" />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <Link to="/" className="nav-link">Home</Link>
+              <Link to="/login" className="nav-link">Login</Link>
+              <Link to="/signup" className="nav-link">Sign-Up</Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
+        <Switch>
+          <Route exact path="/">
+            <Header />
+            <Container>
+              <h2 className="text-center">Want to submit your application?</h2>
+              <Button className={`${style.button} d-block ml-auto mr-auto mb-3`} onClick={handleShow}>Post an App</Button>
+              {handleAppCards()}
+            </Container>
+          </Route>
+
+          <Route path="/signup">
+            <h1>Hello from /signup</h1>
+          </Route>
+        </Switch>
+
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title className="mt-1 ml-2">Submit Application</Modal.Title>
@@ -89,7 +118,7 @@ const App = () => {
                 <FormText>
                   This form will add your application to our database and allow others
                   to show support for you and your application!
-                  <img src={heart} className={`${style.modalHeart} ml-1`} alt="heart logo" />
+                        <img src={heart} className={`${style.modalHeart} ml-1`} alt="heart logo" />
                 </FormText>
               </FormGroup>
               <FormGroup controlId="applicationName">
@@ -112,9 +141,8 @@ const App = () => {
             </Form>
           </Modal.Body>
         </Modal>
-        {handleAppCards()}
-      </Container>
-    </div>
+      </div>
+    </Router>
   );
 };
 
