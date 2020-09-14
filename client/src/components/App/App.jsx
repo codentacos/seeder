@@ -13,6 +13,13 @@ import heart from '../../assets/images/heartFull.svg';
 const App = () => {
   const [userApps, setUserApps] = useState([]);
   const [show, setShow] = useState(false);
+  const [newApp, setNewApp] = useState({
+    appName: '',
+    appDev: '',
+    appDescription: '',
+    appLink: '',
+    appLikes: 0,
+  });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -28,17 +35,7 @@ const App = () => {
       });
   }, []);
 
-  useEffect(() => {
-    axios('/home')
-      .then((response) => {
-        setUserApps(response.data);
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      });
-  }, []);
-
+  // Handles upvoting apps and re-render with updated data
   const handleHearts = (id) => {
     axios.put('/like', { id })
       .then(() => {
@@ -53,6 +50,7 @@ const App = () => {
       });
   };
 
+  // handles rendering appCards depending on how many come back from the database
   const handleAppCards = () => {
     if (userApps.length > 0) {
       return (
@@ -64,6 +62,16 @@ const App = () => {
     return null;
   };
 
+  // handles updating state when typing into modal form
+  const handleChangeFormData = (event) => {
+    const { name } = event.target;
+    setNewApp({ ...newApp, [name]: event.target.value });
+  };
+
+  const handleSubmitFormData = () => {
+    axios.post('/submitapp', newApp);
+  };
+
   return (
     <div>
       <NavTop />
@@ -71,47 +79,37 @@ const App = () => {
       <Container>
         <Button className={`${style.button} d-block ml-auto mr-auto mb-3`} onClick={handleShow}>Post an App</Button>
         <Modal show={show} onHide={handleClose}>
-          <Modal.Title className="mt-1 ml-2">Submit Application</Modal.Title>
           <Modal.Header closeButton>
-            <Modal.Body>
-              {/* <form>
-                  <label htmlFor="appName" className="d-flex">
-                    App Name:
-                  <input type="text" name="appName" className="ml-auto" />
-                  </label>
-
-                  <label htmlFor="dev" className="d-flex">
-                    Developer Name:
-                  <input type="text" name="dev" className="ml-auto" />
-                  </label>
-
-                  <label htmlFor="desc" className="d-flex">
-                    App Description:
-                  <textarea type="text" name="desc" className="ml-auto" />
-                  </label>
-              </form> */}
-
-              <Form>
+            <Modal.Title className="mt-1 ml-2">Submit Application</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={handleSubmitFormData}>
+              <FormGroup controlId="formDescription">
                 <FormText>
                   This form will add your application to our database and allow others
                   to show support for you and your application!
-                  <img src={heart} className={`${style.modalHeart} ml-1`} />
+                  <img src={heart} className={`${style.modalHeart} ml-1`} alt="heart logo" />
                 </FormText>
-                <FormGroup controlId="applicationName">
-                  <FormLabel>Application Name:</FormLabel>
-                  <FormControl type="text" placeholder="Enter app name" />
-                </FormGroup>
-                <FormGroup controlId="developerName">
-                  <FormLabel>Developer Name:</FormLabel>
-                  <FormControl type="text" placeholder="Enter developer name" />
-                </FormGroup>
-                <FormGroup controlId="description">
-                  <FormLabel>Description:</FormLabel>
-                  <FormControl as="textarea" placeholder="Enter description" />
-                </FormGroup>
-              </Form>
-            </Modal.Body>
-          </Modal.Header>
+              </FormGroup>
+              <FormGroup controlId="applicationName">
+                <FormLabel>Application Name:</FormLabel>
+                <FormControl type="text" name="appName" onChange={handleChangeFormData} value={newApp.appName} placeholder="Enter app name" required />
+              </FormGroup>
+              <FormGroup controlId="developerName">
+                <FormLabel>Developer Name:</FormLabel>
+                <FormControl type="text" name="appDev" onChange={handleChangeFormData} value={newApp.appDev} placeholder="Enter developer name" required />
+              </FormGroup>
+              <FormGroup controlId="description">
+                <FormLabel>Description:</FormLabel>
+                <FormControl as="textarea" name="appDescription" onChange={handleChangeFormData} value={newApp.appDescription} placeholder="Enter description" required />
+              </FormGroup>
+              <FormGroup controlId="appLink">
+                <FormLabel>Link to Application:</FormLabel>
+                <FormControl type="text" name="appLink" onChange={handleChangeFormData} value={newApp.appLink} placeholder="Enter link" required />
+              </FormGroup>
+              <Button type="submit" className={`${style.button} d-block m-auto`}>Submit</Button>
+            </Form>
+          </Modal.Body>
         </Modal>
         {handleAppCards()}
       </Container>
