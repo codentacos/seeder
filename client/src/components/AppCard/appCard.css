@@ -6,6 +6,23 @@
   /* width: 70%; */
 }
 
+.button {
+  background-color: rgba(131,130,160,0.8);
+  border: none;
+  outline: none;
+}
+
+.button:active,
+.button:focus {
+  background-color: rgba(71,65,168,0.7) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.button:hover {
+  background-color: rgb(116,114,162);
+}
+
 .heart {
   background-image: url('../../assets/images/heart.svg');
   height: 20px;
@@ -23,6 +40,24 @@
   height: 20px;
   width: 20px;
   transition: 0.2s;
+}
+
+.seeMoreButton {
+  font-weight: bold;
+}
+
+.seeMoreButton:hover {
+  color: rgba(131, 130, 161, 0.5);
+  cursor: default;
+  text-decoration: underline;
+}
+
+a {
+  color: rgba(131, 130, 161, 0.7);
+}
+
+a:hover {
+  color: rgba(131, 130, 161, 1);
 }
 
 @media(min-width: 768px) {
