@@ -77,6 +77,7 @@ const App = () => {
       <NavTop />
       <Header />
       <Container>
+        <h2 className="text-center">Want to submit your application?</h2>
         <Button className={`${style.button} d-block ml-auto mr-auto mb-3`} onClick={handleShow}>Post an App</Button>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>

@@ -21,10 +21,10 @@ const AppCard = (props) => {
     <Container className={style.appCard}>
       <Row>
         <Col xs={6}>
-          <h2>{appName}</h2>
+          <h2 className="mb-0">{appName}</h2>
         </Col>
         <Col xs={6} className="d-flex align-items-center justify-content-end">
-          <a href={`http://${appLink}`} target="_blank" rel="noreferrer"><Button size="sm" className={style.button}>Go To App</Button></a>
+          <a href={`http://${appLink}`} target="_blank" rel="noreferrer"><Button size="sm" className={`${style.button} mt-1`}>Go To App</Button></a>
         </Col>
       </Row>
       <Row>

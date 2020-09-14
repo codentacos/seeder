@@ -6,6 +6,10 @@
   /* width: 70%; */
 }
 
+h2 {
+  font-size: 1.5rem;
+}
+
 .button {
   background-color: rgba(131,130,160,0.8);
   border: none;
