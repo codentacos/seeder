@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import Sprout from '../../assets/images/sprout.png';
 import style from './navTop.css';
 
@@ -11,7 +11,7 @@ const NavTop = () => (
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto">
-        <Nav.Link href="#">Home</Nav.Link>
+        <Nav.Link href="http://localhost:3000">Home</Nav.Link>
         <Nav.Link href="#" disabled>Login</Nav.Link>
         <Nav.Link href="#" disabled>Sign-Up</Nav.Link>
       </Nav>
