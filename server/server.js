@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+// /home gets initial data on homepage load
 app.get('/home', (req, res) => {
   UserApp.find({})
     .then((response) => {
@@ -17,15 +18,22 @@ app.get('/home', (req, res) => {
     });
 });
 
+// /like updates record in database for liking applications
 app.put('/like', (req, res) => {
-  // console.log(`${req.body.id}`);
-  UserApp.findByIdAndUpdate(`${req.body.id}`, { $inc: { likes: 1 } }, (err, response) => {
+  UserApp.findByIdAndUpdate(`${req.body.id}`, { $inc: { appLikes: 1 } }, (err, response) => {
     if (err) {
       console.log(err);
     } else {
       res.sendStatus(204);
     }
   });
+});
+
+// /submitapp will insert a newly submitted app to the database
+app.post('/submitapp', (req, res) => {
+  console.log(req.body);
+  UserApp.create(req.body);
+  res.sendStatus(201);
 });
 
 app.listen(port, () => {
