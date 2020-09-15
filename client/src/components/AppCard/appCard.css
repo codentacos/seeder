@@ -10,6 +10,10 @@ h2 {
   font-size: 1.5rem;
 }
 
+.desc {
+  white-space: pre-line;
+}
+
 .button {
   background-color: rgba(131,130,160,0.8);
   border: none;
