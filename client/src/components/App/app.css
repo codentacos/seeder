@@ -18,3 +18,11 @@
 .modalHeart {
   width: 20px;
 }
+
+.sprout {
+  width: 35px;
+}
+
+.linkDisabled {
+  color: rgba(127,127,127,0.3) !important;
+}

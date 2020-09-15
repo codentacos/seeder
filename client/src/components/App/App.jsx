@@ -1,14 +1,16 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Button, Modal, Form, FormGroup, FormLabel, FormText, FormControl } from 'react-bootstrap';
-import NavTop from '../NavTop/NavTop.jsx';
+import { Container, Button, Navbar, Nav } from 'react-bootstrap';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import Sprout from '../../assets/images/sprout.png';
 import Header from '../Header/Header.jsx';
 import AppCard from '../AppCard/AppCard.jsx';
+import PostAppModal from '../PostAppModal/PostAppModal.jsx';
 import style from './app.css';
-import heart from '../../assets/images/heartFull.svg';
 
 const App = () => {
   const [userApps, setUserApps] = useState([]);
@@ -18,6 +20,7 @@ const App = () => {
     appDev: '',
     appDescription: '',
     appLink: '',
+    appImage: '',
     appLikes: 0,
   });
 
@@ -55,7 +58,13 @@ const App = () => {
     if (userApps.length > 0) {
       return (
         <div>
-          {userApps.map((el) => <AppCard appData={el} key={el._id} handleHearts={handleHearts} />)}
+          {userApps.map((el) => (
+            <AppCard
+              appData={el}
+              key={el._id}
+              handleHearts={handleHearts}
+            />
+          ))}
         </div>
       );
     }
@@ -73,48 +82,48 @@ const App = () => {
   };
 
   return (
-    <div>
-      <NavTop />
-      <Header />
-      <Container>
-        <h2 className="text-center">Want to submit your application?</h2>
-        <Button className={`${style.button} d-block ml-auto mr-auto mb-3`} onClick={handleShow}>Post an App</Button>
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title className="mt-1 ml-2">Submit Application</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form onSubmit={handleSubmitFormData}>
-              <FormGroup controlId="formDescription">
-                <FormText>
-                  This form will add your application to our database and allow others
-                  to show support for you and your application!
-                  <img src={heart} className={`${style.modalHeart} ml-1`} alt="heart logo" />
-                </FormText>
-              </FormGroup>
-              <FormGroup controlId="applicationName">
-                <FormLabel>Application Name:</FormLabel>
-                <FormControl type="text" name="appName" onChange={handleChangeFormData} value={newApp.appName} placeholder="Enter app name" required />
-              </FormGroup>
-              <FormGroup controlId="developerName">
-                <FormLabel>Developer Name:</FormLabel>
-                <FormControl type="text" name="appDev" onChange={handleChangeFormData} value={newApp.appDev} placeholder="Enter developer name" required />
-              </FormGroup>
-              <FormGroup controlId="description">
-                <FormLabel>Description:</FormLabel>
-                <FormControl as="textarea" name="appDescription" onChange={handleChangeFormData} value={newApp.appDescription} placeholder="Enter description" required />
-              </FormGroup>
-              <FormGroup controlId="appLink">
-                <FormLabel>Link to Application:</FormLabel>
-                <FormControl type="text" name="appLink" onChange={handleChangeFormData} value={newApp.appLink} placeholder="Enter link" required />
-              </FormGroup>
-              <Button type="submit" className={`${style.button} d-block m-auto`}>Submit</Button>
-            </Form>
-          </Modal.Body>
-        </Modal>
-        {handleAppCards()}
-      </Container>
-    </div>
+    <Router>
+      <div>
+        <Navbar bg="transparent" expand="sm">
+          <Navbar.Brand href="#">
+            <img src={Sprout} className={`${style.sprout} mr-2`} alt="Plant sprouting logo" />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <Link to="/" className="nav-link">Home</Link>
+              <Link to="/login" className={`${style.linkDisabled} nav-link`} onClick={(e) => e.preventDefault()}>Login</Link>
+              <Link to="/signup" className={`${style.linkDisabled} nav-link`} onClick={(e) => e.preventDefault()}>Sign-Up</Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
+        <Switch>
+          <Route exact path="/">
+            <Header />
+            <Container>
+              <h2 className="text-center">Want to submit your application?</h2>
+              <Button className={`${style.button} d-block ml-auto mr-auto mb-3`} onClick={handleShow}>Post an App</Button>
+              {handleAppCards()}
+              <PostAppModal
+                show={show}
+                setShow={setShow}
+                handleClose={handleClose}
+                handleShow={handleShow}
+                submit={handleSubmitFormData}
+                handleChange={handleChangeFormData}
+                formData={newApp}
+              />
+            </Container>
+          </Route>
+
+          <Route path="/signup">
+            <h1>Hello from /signup</h1>
+          </Route>
+        </Switch>
+
+      </div>
+    </Router>
   );
 };
 
