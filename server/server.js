@@ -42,6 +42,6 @@ app.post('/submitapp', (req, res) => {
   res.sendStatus(201);
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`App is running on port: ${port}`);
 });
