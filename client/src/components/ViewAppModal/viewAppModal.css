@@ -1,0 +1,14 @@
+.devName {
+  font-size: 1.2rem;
+}
+
+.appImage {
+  display: block;
+  max-height: 300px;
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+.desc {
+  white-space: pre-line;
+}
