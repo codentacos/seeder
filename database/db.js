@@ -10,6 +10,7 @@ const UserAppSchema = new mongoose.Schema({
   appDev: String,
   appDescription: String,
   appLink: String,
+  appImage: String,
   appLikes: Number,
 });
 

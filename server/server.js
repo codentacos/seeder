@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -14,6 +13,7 @@ app.use(express.static('public'));
 // /home gets initial data on homepage load
 app.get('/home', (req, res) => {
   UserApp.find({})
+    .sort({ appLikes: 'desc' })
     .then((response) => {
       res.send(response);
     });
