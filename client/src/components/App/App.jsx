@@ -10,6 +10,7 @@ import Sprout from '../../assets/images/sprout.png';
 import Header from '../Header/Header.jsx';
 import AppCard from '../AppCard/AppCard.jsx';
 import PostAppModal from '../PostAppModal/PostAppModal.jsx';
+import SignUp from '../SignUp/Signup.jsx';
 import style from './app.css';
 
 const App = () => {
@@ -93,7 +94,7 @@ const App = () => {
             <Nav className="ml-auto">
               <Link to="/" className="nav-link">Home</Link>
               <Link to="/login" className={`${style.linkDisabled} nav-link`} onClick={(e) => e.preventDefault()}>Login</Link>
-              <Link to="/signup" className={`${style.linkDisabled} nav-link`} onClick={(e) => e.preventDefault()}>Sign-Up</Link>
+              <Link to="/signup" className={`${style.linkDisabled} nav-link`}>Sign-Up</Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -118,7 +119,7 @@ const App = () => {
           </Route>
 
           <Route path="/signup">
-            <h1>Hello from /signup</h1>
+            <SignUp />
           </Route>
         </Switch>
 

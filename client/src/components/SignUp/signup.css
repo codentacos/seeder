@@ -1,0 +1,22 @@
+.signupContainer {
+  width: 30%;
+}
+
+.button {
+  background-color: rgba(131,130,160,0.8);
+  border: none;
+  display: block;
+  margin: 0 auto;
+  outline: none;
+}
+
+.button:active,
+.button:focus {
+  background-color: rgba(71,65,168,0.7) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.button:hover {
+  background-color: rgb(116,114,162);
+}
