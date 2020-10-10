@@ -10,7 +10,7 @@ const flash = require('connect-flash');
 const app = express();
 const port = 3000;
 const passport = require('passport');
-const UserApp = require('../database/db.js');
+// const UserApp = require('../database/db.js');
 
 // express app setup
 app.use(morgan('dev'));
@@ -25,7 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messeges stored in the session
 
-require('../client/src/routes.js')(app, passport);
+require('./routes.js')(app, passport);
 
 app.listen(process.env.PORT || port, () => {
   console.log(`App is running on port: ${port}`);
